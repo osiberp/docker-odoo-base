@@ -1,0 +1,18 @@
+dev:
+    image: ossyberp/odoo-dev:9.0
+    dockerfile: Dockerfile
+    stdin_open: false
+    tty: false
+    volumes:
+        - 3rd-party-addons:/opt/3rd-party-addons
+        - odoo:/opt/odoo
+    ports:
+        - 8069
+    links:
+        - db:db
+
+db:
+    image: postgres:9.5
+    environment:
+        - POSTGRES_PASSWORD=odoo
+        - POSTGRES_USER=odoo
